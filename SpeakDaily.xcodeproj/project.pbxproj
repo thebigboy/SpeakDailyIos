@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		D7D631C72EFFBFD500BD07DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7D631B12EFFBFD400BD07DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7D631B82EFFBFD400BD07DC;
+			remoteInfo = SpeakDaily;
+		};
+		D7D631D12EFFBFD500BD07DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D7D631B12EFFBFD400BD07DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D7D631B82EFFBFD400BD07DC;
+			remoteInfo = SpeakDaily;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D7D631B92EFFBFD400BD07DC /* SpeakDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpeakDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7D631C62EFFBFD500BD07DC /* SpeakDailyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeakDailyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D7D631D02EFFBFD500BD07DC /* SpeakDailyUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeakDailyUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		D73ECEB42EFFC7F200A100B7 /* Exceptions for "SpeakDaily" folder in "SpeakDaily" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = D7D631B82EFFBFD400BD07DC /* SpeakDaily */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		D7D631BB2EFFBFD400BD07DC /* SpeakDaily */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				D73ECEB42EFFC7F200A100B7 /* Exceptions for "SpeakDaily" folder in "SpeakDaily" target */,
+			);
+			path = SpeakDaily;
+			sourceTree = "<group>";
+		};
+		D7D631C92EFFBFD500BD07DC /* SpeakDailyTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SpeakDailyTests;
+			sourceTree = "<group>";
+		};
+		D7D631D32EFFBFD500BD07DC /* SpeakDailyUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SpeakDailyUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D7D631B62EFFBFD400BD07DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D631C32EFFBFD500BD07DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D631CD2EFFBFD500BD07DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D7D631B02EFFBFD400BD07DC = {
+			isa = PBXGroup;
+			children = (
+				D7D631BB2EFFBFD400BD07DC /* SpeakDaily */,
+				D7D631C92EFFBFD500BD07DC /* SpeakDailyTests */,
+				D7D631D32EFFBFD500BD07DC /* SpeakDailyUITests */,
+				D7D631BA2EFFBFD400BD07DC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D7D631BA2EFFBFD400BD07DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D7D631B92EFFBFD400BD07DC /* SpeakDaily.app */,
+				D7D631C62EFFBFD500BD07DC /* SpeakDailyTests.xctest */,
+				D7D631D02EFFBFD500BD07DC /* SpeakDailyUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D7D631B82EFFBFD400BD07DC /* SpeakDaily */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7D631DA2EFFBFD500BD07DC /* Build configuration list for PBXNativeTarget "SpeakDaily" */;
+			buildPhases = (
+				D7D631B52EFFBFD400BD07DC /* Sources */,
+				D7D631B62EFFBFD400BD07DC /* Frameworks */,
+				D7D631B72EFFBFD400BD07DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D7D631BB2EFFBFD400BD07DC /* SpeakDaily */,
+			);
+			name = SpeakDaily;
+			packageProductDependencies = (
+			);
+			productName = SpeakDaily;
+			productReference = D7D631B92EFFBFD400BD07DC /* SpeakDaily.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D7D631C52EFFBFD500BD07DC /* SpeakDailyTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7D631DD2EFFBFD500BD07DC /* Build configuration list for PBXNativeTarget "SpeakDailyTests" */;
+			buildPhases = (
+				D7D631C22EFFBFD500BD07DC /* Sources */,
+				D7D631C32EFFBFD500BD07DC /* Frameworks */,
+				D7D631C42EFFBFD500BD07DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7D631C82EFFBFD500BD07DC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D7D631C92EFFBFD500BD07DC /* SpeakDailyTests */,
+			);
+			name = SpeakDailyTests;
+			packageProductDependencies = (
+			);
+			productName = SpeakDailyTests;
+			productReference = D7D631C62EFFBFD500BD07DC /* SpeakDailyTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D7D631CF2EFFBFD500BD07DC /* SpeakDailyUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D7D631E02EFFBFD500BD07DC /* Build configuration list for PBXNativeTarget "SpeakDailyUITests" */;
+			buildPhases = (
+				D7D631CC2EFFBFD500BD07DC /* Sources */,
+				D7D631CD2EFFBFD500BD07DC /* Frameworks */,
+				D7D631CE2EFFBFD500BD07DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D7D631D22EFFBFD500BD07DC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D7D631D32EFFBFD500BD07DC /* SpeakDailyUITests */,
+			);
+			name = SpeakDailyUITests;
+			packageProductDependencies = (
+			);
+			productName = SpeakDailyUITests;
+			productReference = D7D631D02EFFBFD500BD07DC /* SpeakDailyUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D7D631B12EFFBFD400BD07DC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1640;
+				TargetAttributes = {
+					D7D631B82EFFBFD400BD07DC = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					D7D631C52EFFBFD500BD07DC = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = D7D631B82EFFBFD400BD07DC;
+					};
+					D7D631CF2EFFBFD500BD07DC = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = D7D631B82EFFBFD400BD07DC;
+					};
+				};
+			};
+			buildConfigurationList = D7D631B42EFFBFD400BD07DC /* Build configuration list for PBXProject "SpeakDaily" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D7D631B02EFFBFD400BD07DC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = D7D631BA2EFFBFD400BD07DC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D7D631B82EFFBFD400BD07DC /* SpeakDaily */,
+				D7D631C52EFFBFD500BD07DC /* SpeakDailyTests */,
+				D7D631CF2EFFBFD500BD07DC /* SpeakDailyUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D7D631B72EFFBFD400BD07DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D631C42EFFBFD500BD07DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D631CE2EFFBFD500BD07DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D7D631B52EFFBFD400BD07DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D631C22EFFBFD500BD07DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7D631CC2EFFBFD500BD07DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D7D631C82EFFBFD500BD07DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7D631B82EFFBFD400BD07DC /* SpeakDaily */;
+			targetProxy = D7D631C72EFFBFD500BD07DC /* PBXContainerItemProxy */;
+		};
+		D7D631D22EFFBFD500BD07DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D7D631B82EFFBFD400BD07DC /* SpeakDaily */;
+			targetProxy = D7D631D12EFFBFD500BD07DC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		D7D631D82EFFBFD500BD07DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D7D631D92EFFBFD500BD07DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D7D631DB2EFFBFD500BD07DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeakDaily/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "用于录音并识别你的中文，生成英文表达";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "用于把你的语音转换成文字，帮助你学习英语";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.firefly.SpeakDaily;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D7D631DC2EFFBFD500BD07DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeakDaily/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "用于录音并识别你的中文，生成英文表达";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "用于把你的语音转换成文字，帮助你学习英语";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.firefly.SpeakDaily;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D7D631DE2EFFBFD500BD07DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.firefly.SpeakDailyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpeakDaily.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpeakDaily";
+			};
+			name = Debug;
+		};
+		D7D631DF2EFFBFD500BD07DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.firefly.SpeakDailyTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SpeakDaily.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SpeakDaily";
+			};
+			name = Release;
+		};
+		D7D631E12EFFBFD500BD07DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.firefly.SpeakDailyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SpeakDaily;
+			};
+			name = Debug;
+		};
+		D7D631E22EFFBFD500BD07DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = C8K9VPUTFM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.firefly.SpeakDailyUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = SpeakDaily;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D7D631B42EFFBFD400BD07DC /* Build configuration list for PBXProject "SpeakDaily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D631D82EFFBFD500BD07DC /* Debug */,
+				D7D631D92EFFBFD500BD07DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7D631DA2EFFBFD500BD07DC /* Build configuration list for PBXNativeTarget "SpeakDaily" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D631DB2EFFBFD500BD07DC /* Debug */,
+				D7D631DC2EFFBFD500BD07DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7D631DD2EFFBFD500BD07DC /* Build configuration list for PBXNativeTarget "SpeakDailyTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D631DE2EFFBFD500BD07DC /* Debug */,
+				D7D631DF2EFFBFD500BD07DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D7D631E02EFFBFD500BD07DC /* Build configuration list for PBXNativeTarget "SpeakDailyUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D631E12EFFBFD500BD07DC /* Debug */,
+				D7D631E22EFFBFD500BD07DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D7D631B12EFFBFD400BD07DC /* Project object */;
+}
