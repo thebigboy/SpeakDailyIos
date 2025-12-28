@@ -20,6 +20,7 @@ final class PracticeViewModel: ObservableObject {
     private let tts = TTSService()
     private let historyStore = HistoryStore.shared
     private let profile = UserProfileStore.shared
+    private let dailyProgress = DailyProgressStore.shared
 
     init() {
         Task { await requestPermissionsIfNeeded() }
@@ -38,6 +39,14 @@ final class PracticeViewModel: ObservableObject {
     func startRecording() {
         guard status != .permissionDenied else { return }
         do {
+            if status == .idle || status == .ready {
+                let entry = historyStore.startEntry()
+                currentHistoryID = entry.id
+                chineseText = ""
+                englishText = ""
+                alternatives = []
+                isFavorite = entry.isFavorite
+            }
             status = .recording
             try recorder.start()
         } catch {
@@ -63,6 +72,9 @@ final class PracticeViewModel: ObservableObject {
             status = .processing
             let cn = try await speech.transcribe(audioURL: url)
             chineseText = cn
+            if let id = currentHistoryID {
+                historyStore.updateChinese(id: id, cn: cn)
+            }
 
             status = .translating
             let res = try await deepseek.translateToEnglish(chinese: cn)
@@ -74,11 +86,16 @@ final class PracticeViewModel: ObservableObject {
                 ConversationMessage(role: .assistant, content: res.english)
             ]
 
-            let entry = historyStore.addEntry(cn: cn, en: res.english)
-            currentHistoryID = entry.id
-            isFavorite = entry.isFavorite
+            if let id = currentHistoryID {
+                historyStore.updateEnglish(id: id, en: res.english)
+            } else {
+                let entry = historyStore.addEntry(cn: cn, en: res.english)
+                currentHistoryID = entry.id
+                isFavorite = entry.isFavorite
+            }
 
             status = .ready
+            dailyProgress.increment()
             if profile.autoSpeak {
                 speakEnglish()
             }
@@ -114,6 +131,9 @@ final class PracticeViewModel: ObservableObject {
         englishText = text
         if let id = currentHistoryID {
             historyStore.updateEnglish(id: id, en: text)
+        }
+        if profile.autoSpeak {
+            speakEnglish()
         }
     }
 }

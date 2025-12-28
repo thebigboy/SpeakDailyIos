@@ -20,6 +20,12 @@ final class HistoryStore: ObservableObject {
         return entry
     }
 
+    func startEntry() -> HistoryEntry {
+        let entry = HistoryEntry(cn: "", en: "")
+        items.insert(entry, at: 0)
+        return entry
+    }
+
     func toggleFavorite(id: UUID) -> Bool {
         guard let index = items.firstIndex(where: { $0.id == id }) else { return false }
         items[index].isFavorite.toggle()
@@ -29,6 +35,11 @@ final class HistoryStore: ObservableObject {
     func updateEnglish(id: UUID, en: String) {
         guard let index = items.firstIndex(where: { $0.id == id }) else { return }
         items[index].en = en
+    }
+
+    func updateChinese(id: UUID, cn: String) {
+        guard let index = items.firstIndex(where: { $0.id == id }) else { return }
+        items[index].cn = cn
     }
 
     private func load() {

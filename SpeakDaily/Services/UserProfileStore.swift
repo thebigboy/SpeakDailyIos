@@ -13,10 +13,14 @@ final class UserProfileStore: ObservableObject {
     @Published var autoSpeak: Bool {
         didSet { UserDefaults.standard.set(autoSpeak, forKey: autoSpeakKey) }
     }
+    @Published var enableCarousel: Bool {
+        didSet { UserDefaults.standard.set(enableCarousel, forKey: carouselKey) }
+    }
 
     private let nameKey = "user.displayName"
     private let rateKey = "tts.speechRate"
     private let autoSpeakKey = "tts.autoSpeak"
+    private let carouselKey = "ui.carouselEnabled"
 
     private init() {
         let saved = UserDefaults.standard.string(forKey: nameKey)
@@ -27,6 +31,8 @@ final class UserProfileStore: ObservableObject {
         speechRate = storedRate ?? 0.5
         let storedAutoSpeak = UserDefaults.standard.object(forKey: autoSpeakKey) as? Bool
         autoSpeak = storedAutoSpeak ?? true
+        let storedCarousel = UserDefaults.standard.object(forKey: carouselKey) as? Bool
+        enableCarousel = storedCarousel ?? false
     }
 
     func updateDisplayName(_ value: String) {

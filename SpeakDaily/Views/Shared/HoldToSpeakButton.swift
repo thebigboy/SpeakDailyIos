@@ -25,7 +25,7 @@ struct HoldToSpeakButton: View {
                 .frame(width: coreSize, height: coreSize)
                 .shadow(radius: 14)
 
-            VStack(spacing: 6) {
+            VStack(spacing: 3) {
                 Image(systemName: "mic.fill")
                     .font(.system(size: 28, weight: .bold))
                     .foregroundStyle(.white)
@@ -37,17 +37,19 @@ struct HoldToSpeakButton: View {
         .frame(width: rippleSize, height: rippleSize, alignment: .center)
         .contentShape(Circle())
         .onAppear { pulse = true }
-        .onLongPressGesture(minimumDuration: 0.2, maximumDistance: 24, pressing: { pressing in
-            if pressing {
-                guard !isPressing else { return }
-                isPressing = true
-                onStart()
-            } else {
-                guard isPressing else { return }
-                isPressing = false
-                onEnd()
-            }
-        }, perform: {})
+        .highPriorityGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    guard !isPressing else { return }
+                    isPressing = true
+                    onStart()
+                }
+                .onEnded { _ in
+                    guard isPressing else { return }
+                    isPressing = false
+                    onEnd()
+                }
+        )
         .accessibilityLabel(status == .recording ? "录音中" : "按住说话")
     }
 }

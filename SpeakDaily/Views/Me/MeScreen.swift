@@ -42,6 +42,7 @@ struct MeScreen: View {
                             .frame(width: 44, alignment: .trailing)
                     }
                     Toggle("自动朗读英文", isOn: $profile.autoSpeak)
+                    Toggle("卡片轮播效果", isOn: $profile.enableCarousel)
                     Toggle("保存历史记录", isOn: $saveHistory)
                     NavigationLink("翻译偏好") { Text("口语 / 正式 / 简短") }
                     NavigationLink("英语口音") { Text("美式 / 英式") }

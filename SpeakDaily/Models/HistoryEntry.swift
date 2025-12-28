@@ -3,7 +3,7 @@ import Foundation
 struct HistoryEntry: Identifiable, Codable {
     let id: UUID
     let createdAt: Date
-    let cn: String
+    var cn: String
     var en: String
     var isFavorite: Bool
 

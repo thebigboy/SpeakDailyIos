@@ -12,8 +12,17 @@ struct ActionRow: View {
         HStack(spacing: 12) {
 
             Button(action: onSpeak) {
-                Label("朗读", systemImage: "speaker.wave.2.fill")
+                if isSpeaking {
+                    HStack(spacing: 8) {
+                        ProgressView()
+                            .scaleEffect(0.9)
+                        Text("朗读中")
+                    }
                     .frame(maxWidth: .infinity, minHeight: 44)
+                } else {
+                    Label("朗读", systemImage: "speaker.wave.2.fill")
+                        .frame(maxWidth: .infinity, minHeight: 44)
+                }
             }
             .frame(maxWidth: .infinity, minHeight: 44)
             //.controlSize(.large)
