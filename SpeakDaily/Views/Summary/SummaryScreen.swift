@@ -1,42 +1,91 @@
 import SwiftUI
 
 struct SummaryScreen: View {
+    @StateObject private var viewModel = SummaryViewModel()
+    @StateObject private var summaryStore = SummaryStore.shared
+
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(alignment: .leading, spacing: 16) {
-                    headerCard
-
-                    section(title: "重点词汇") {
-                        vocabCard(word: "library", meaning: "图书馆", example: "Let’s go to the library.")
-                        vocabCard(word: "study", meaning: "学习", example: "I need to study tonight.")
+                if viewModel.sections.isEmpty {
+                    VStack(spacing: 12) {
+                        Text("暂无会话记录")
+                            .font(.headline)
+                        Text("先去练习页面完成几次翻译吧")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
                     }
+                    .frame(maxWidth: .infinity, minHeight: 260)
+                } else {
+                    LazyVStack(alignment: .leading, spacing: 20) {
+                        ForEach(viewModel.sections) { sectionData in
+                            VStack(alignment: .leading, spacing: 16) {
+                                HStack {
+                                    Text(viewModel.displayDate(sectionData.date))
+                                        .font(.headline)
+                                    Spacer()
+                                    Button(sectionData.summary == nil ? "生成总结" : "重新生成") {
+                                        Task { await viewModel.generateSummary(for: sectionData.id) }
+                                    }
+                                    .buttonStyle(.bordered)
+                                    .disabled(sectionData.isLoading || sectionData.entries.isEmpty)
+                                }
 
-                    section(title: "语法点") {
-                        grammarCard(title: "want to + 动词", desc: "表示想做某事", example: "I want to go home.")
-                    }
+                                if sectionData.isLoading {
+                                    ProgressView("正在生成总结…")
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                } else if let error = sectionData.errorMessage {
+                                    Text("生成失败：\(error)")
+                                        .font(.footnote)
+                                        .foregroundStyle(.secondary)
+                                } else if let summary = sectionData.summary {
+                                    headerCard(summary: summary)
 
-                    section(title: "小测验") {
-                        quizCard()
+                                    section(title: "重点词汇") {
+                                        ForEach(Array(summary.vocab.prefix(10))) { item in
+                                            vocabCard(word: item.word, meaning: item.meaning, example: item.example)
+                                        }
+                                    }
+
+                                    section(title: "语法点") {
+                                        ForEach(Array(summary.grammar.prefix(10))) { item in
+                                            grammarCard(title: item.title, desc: item.explanation, example: item.example)
+                                        }
+                                    }
+
+                                    section(title: "小测验") {
+                                        let score = quizScore(summary: summary, dayKey: sectionData.id)
+                                        if let score {
+                                            Text("得分：\(score.correct)/\(score.total)")
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                        }
+                                        ForEach(Array(summary.quiz.prefix(10))) { item in
+                                            quizCard(item: item, dayKey: sectionData.id)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
+                    .padding()
                 }
-                .padding()
             }
             .navigationTitle("学习总结")
+            .task {
+                viewModel.load()
+            }
         }
     }
 
-    private var headerCard: some View {
+    private func headerCard(summary: SummaryResult) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("本次对话主题：校园生活")
+            Text("本次对话主题：\(summary.topic)")
                 .font(.headline)
 
-            Text("词汇 8 | 语法 2 | 表达 3")
+            Text("词汇 \(summary.vocab.count) | 语法 \(summary.grammar.count) | 小测 \(summary.quiz.count)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
-
-            Button("重新生成") {}
-                .buttonStyle(.borderedProminent)
         }
         .padding()
         .background(.thinMaterial)
@@ -75,20 +124,35 @@ struct SummaryScreen: View {
         .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
     }
 
-    private func quizCard() -> some View {
+    private func quizCard(item: QuizItem, dayKey: String) -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("“我想去图书馆学习” 的英文是：")
+            Text(item.question)
                 .font(.subheadline)
 
-            ForEach(["I want to go to the library and study.", "I go library study."], id: \ .self) { option in
-                Button(option) {}
-                    .buttonStyle(.bordered)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+            ForEach(Array(item.options.enumerated()), id: \.offset) { index, option in
+                let selected = summaryStore.answers(for: dayKey)[item.question] == index
+                Button(option) {
+                    summaryStore.updateAnswer(dayKey: dayKey, question: item.question, selectedIndex: index)
+                }
+                .buttonStyle(.bordered)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(selected ? Color.blue : Color.clear, lineWidth: 1.5)
+                )
             }
         }
         .padding()
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 14))
         .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 4)
+    }
+
+    private func quizScore(summary: SummaryResult, dayKey: String) -> (correct: Int, total: Int)? {
+        let answers = summaryStore.answers(for: dayKey)
+        guard !answers.isEmpty else { return nil }
+        let total = summary.quiz.count
+        let correct = summary.quiz.filter { answers[$0.question] == $0.answerIndex }.count
+        return (correct, total)
     }
 }

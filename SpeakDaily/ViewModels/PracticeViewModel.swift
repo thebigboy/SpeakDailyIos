@@ -22,6 +22,9 @@ final class PracticeViewModel: ObservableObject {
     private let profile = UserProfileStore.shared
     private let dailyProgress = DailyProgressStore.shared
 
+    private var pendingHistoryID: UUID? = nil
+    private var backupState: (id: UUID?, cn: String, en: String, alternatives: [String], isFavorite: Bool) = (nil, "", "", [], false)
+
     init() {
         Task { await requestPermissionsIfNeeded() }
     }
@@ -39,9 +42,12 @@ final class PracticeViewModel: ObservableObject {
     func startRecording() {
         guard status != .permissionDenied else { return }
         do {
-            if status == .idle || status == .ready {
+            errorMessage = nil
+            if status == .idle || status == .ready || status == .error {
+                backupState = (currentHistoryID, chineseText, englishText, alternatives, isFavorite)
                 let entry = historyStore.startEntry()
                 currentHistoryID = entry.id
+                pendingHistoryID = entry.id
                 chineseText = ""
                 englishText = ""
                 alternatives = []
@@ -50,8 +56,17 @@ final class PracticeViewModel: ObservableObject {
             status = .recording
             try recorder.start()
         } catch {
-            status = .error
             errorMessage = "录音启动失败：\(error.localizedDescription)"
+            if let id = pendingHistoryID {
+                historyStore.remove(id: id)
+                pendingHistoryID = nil
+                currentHistoryID = backupState.id
+                chineseText = backupState.cn
+                englishText = backupState.en
+                alternatives = backupState.alternatives
+                isFavorite = backupState.isFavorite
+            }
+            status = .ready
         }
     }
 
@@ -93,6 +108,7 @@ final class PracticeViewModel: ObservableObject {
                 currentHistoryID = entry.id
                 isFavorite = entry.isFavorite
             }
+            pendingHistoryID = nil
 
             status = .ready
             dailyProgress.increment()
@@ -100,8 +116,17 @@ final class PracticeViewModel: ObservableObject {
                 speakEnglish()
             }
         } catch {
-            status = .error
             errorMessage = error.localizedDescription
+            if let id = pendingHistoryID {
+                historyStore.remove(id: id)
+                pendingHistoryID = nil
+                currentHistoryID = backupState.id
+                chineseText = backupState.cn
+                englishText = backupState.en
+                alternatives = backupState.alternatives
+                isFavorite = backupState.isFavorite
+            }
+            status = .ready
         }
     }
 

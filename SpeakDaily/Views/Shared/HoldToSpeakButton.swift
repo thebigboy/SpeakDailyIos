@@ -37,16 +37,26 @@ struct HoldToSpeakButton: View {
         .frame(width: rippleSize, height: rippleSize, alignment: .center)
         .contentShape(Circle())
         .onAppear { pulse = true }
+        .onChange(of: status) { _, newStatus in
+            print("🎙️ HoldButton status:", String(describing: newStatus))
+            if newStatus != .recording {
+                isPressing = false
+            }
+        }
         .highPriorityGesture(
             DragGesture(minimumDistance: 0)
                 .onChanged { _ in
+                    print("🎙️ HoldButton onChanged, isPressing:", isPressing)
                     guard !isPressing else { return }
                     isPressing = true
+                    print("🎙️ HoldButton start recording")
                     onStart()
                 }
                 .onEnded { _ in
+                    print("🎙️ HoldButton onEnded, isPressing:", isPressing)
                     guard isPressing else { return }
                     isPressing = false
+                    print("🎙️ HoldButton end recording")
                     onEnd()
                 }
         )

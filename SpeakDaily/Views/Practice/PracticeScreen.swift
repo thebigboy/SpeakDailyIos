@@ -74,7 +74,7 @@ struct PracticeScreen: View {
                         HoldToSpeakButton(
                             status: viewModel.status,
                             onStart: {
-                                if viewModel.status == .idle || viewModel.status == .ready {
+                                if viewModel.status == .idle || viewModel.status == .ready || viewModel.status == .error {
                                     viewModel.startRecording()
                                 }
                             },

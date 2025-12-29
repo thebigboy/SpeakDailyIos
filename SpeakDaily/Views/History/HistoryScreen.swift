@@ -26,7 +26,8 @@ struct HistoryScreen: View {
                 .padding(.horizontal)
                 .padding(.top, 8)
 
-                List(filteredItems) { item in
+                List {
+                    ForEach(filteredItems) { item in
                     HStack(alignment: .center, spacing: 12) {
                         VStack(alignment: .leading, spacing: 6) {
                             HStack {
@@ -60,6 +61,23 @@ struct HistoryScreen: View {
                         .disabled(disabledPlayIDs.contains(item.id))
                     }
                     .padding(.vertical, 6)
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button(role: .destructive) {
+                            store.remove(id: item.id)
+                        } label: {
+                            Text("删除")
+                        }
+                        .tint(.red.opacity(0.75))
+                    }
+                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                        Button {
+                            _ = store.toggleFavorite(id: item.id)
+                        } label: {
+                            Text(item.isFavorite ? "取消收藏" : "收藏")
+                        }
+                        .tint(item.isFavorite ? .gray : .orange)
+                    }
+                    }
                 }
             }
             .navigationTitle("历史记录")
@@ -89,5 +107,10 @@ struct HistoryScreen: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             disabledPlayIDs.remove(item.id)
         }
+    }
+
+    private func deleteItems(at offsets: IndexSet) {
+        let ids = offsets.compactMap { filteredItems[$0].id }
+        ids.forEach { store.remove(id: $0) }
     }
 }

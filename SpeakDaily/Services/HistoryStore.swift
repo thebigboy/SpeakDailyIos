@@ -42,6 +42,14 @@ final class HistoryStore: ObservableObject {
         items[index].cn = cn
     }
 
+    func remove(id: UUID) {
+        items.removeAll { $0.id == id }
+    }
+
+    func remove(at offsets: IndexSet) {
+        items.remove(atOffsets: offsets)
+    }
+
     private func load() {
         guard let data = UserDefaults.standard.data(forKey: storageKey) else { return }
         do {

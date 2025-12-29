@@ -36,7 +36,7 @@ JSON Schema:
   "quiz": [{"question":"", "options":["",""], "answerIndex":0}]
 }
 要求：
-- vocab/grammar/quiz 每项至少 2 条
+- vocab/grammar/quiz 每项 2-6 条，最多 10 条
 - example 为英文例句
 - quiz 的 answerIndex 从 0 开始
 """
@@ -51,4 +51,3 @@ JSON Schema:
 """
     }
 }
-
