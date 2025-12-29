@@ -41,6 +41,14 @@ struct MeScreen: View {
                             .foregroundStyle(.secondary)
                             .frame(width: 44, alignment: .trailing)
                     }
+                    HStack {
+                        Text("音调")
+                        Slider(value: $profile.speechPitch, in: 0.9...1.2, step: 0.05)
+                        Text(String(format: "%.2f", profile.speechPitch))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .frame(width: 44, alignment: .trailing)
+                    }
                     Toggle("自动朗读英文", isOn: $profile.autoSpeak)
                     Toggle("卡片轮播效果", isOn: $profile.enableCarousel)
                     Toggle("保存历史记录", isOn: $saveHistory)

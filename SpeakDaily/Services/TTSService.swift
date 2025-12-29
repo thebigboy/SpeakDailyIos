@@ -31,9 +31,11 @@ final class TTSService: NSObject, AVSpeechSynthesizerDelegate {
         }
 
         let utterance = AVSpeechUtterance(string: clean)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.voice = resolveVoice()
         let clampedRate = min(max(profile.speechRate, 0.0), 1.0)
         utterance.rate = clampedRate
+        let clampedPitch = min(max(profile.speechPitch, 0.5), 2.0)
+        utterance.pitchMultiplier = clampedPitch
         utterance.volume = 1.0
         synthesizer.speak(utterance)
     }
@@ -48,5 +50,20 @@ final class TTSService: NSObject, AVSpeechSynthesizerDelegate {
         isSpeaking = false
         onFinished?()
         onFinished = nil
+    }
+
+    private func resolveVoice() -> AVSpeechSynthesisVoice? {
+        let preferred = profile.preferredVoiceIdentifier.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !preferred.isEmpty, let voice = AVSpeechSynthesisVoice(identifier: preferred) {
+            return voice
+        }
+        let names = ["Samantha", "Ava", "Allison", "Nicky", "Siri"]
+        let voices = AVSpeechSynthesisVoice.speechVoices().filter { $0.language == "en-US" }
+        for name in names {
+            if let voice = voices.first(where: { $0.name.lowercased().contains(name.lowercased()) }) {
+                return voice
+            }
+        }
+        return AVSpeechSynthesisVoice(language: "en-US")
     }
 }
