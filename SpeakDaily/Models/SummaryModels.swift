@@ -19,6 +19,10 @@ struct VocabItem: Codable, Identifiable {
     var word: String
     var meaning: String
     var example: String
+
+    private enum CodingKeys: String, CodingKey {
+        case word, meaning, example
+    }
 }
 
 struct GrammarItem: Codable, Identifiable {
@@ -26,6 +30,10 @@ struct GrammarItem: Codable, Identifiable {
     var title: String
     var explanation: String
     var example: String
+
+    private enum CodingKeys: String, CodingKey {
+        case title, explanation, example
+    }
 }
 
 struct QuizItem: Codable, Identifiable {
@@ -33,5 +41,8 @@ struct QuizItem: Codable, Identifiable {
     var question: String
     var options: [String]
     var answerIndex: Int
-}
 
+    private enum CodingKeys: String, CodingKey {
+        case question, options, answerIndex
+    }
+}

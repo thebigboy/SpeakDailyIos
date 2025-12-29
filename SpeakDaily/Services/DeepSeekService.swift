@@ -50,8 +50,14 @@ final class DeepSeekService {
         let userPrompt = PromptTemplates.summaryUserPrompt(messages: messages)
         let systemPrompt = PromptTemplates.summarySystemPrompt
 
+        print("🧩 Summary: messages count =", messages.count)
+        print("🧩 Summary: system prompt len =", systemPrompt.count)
+        print("🧩 Summary: user prompt len =", userPrompt.count)
+
         let content = try await chatCompletion(apiKey: key, systemPrompt: systemPrompt, userPrompt: userPrompt)
+        print("🧩 Summary raw content:", content)
         let jsonString = extractFirstJSONObject(from: content) ?? content
+        print("🧩 Summary extracted JSON:", jsonString)
         guard let data = jsonString.data(using: .utf8) else { throw DeepSeekError.invalidJSON }
         return try JSONDecoder().decode(SummaryResult.self, from: data)
     }
@@ -106,4 +112,3 @@ final class DeepSeekService {
         return nil
     }
 }
-

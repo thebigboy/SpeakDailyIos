@@ -3,6 +3,7 @@ import SwiftUI
 struct SummaryScreen: View {
     @StateObject private var viewModel = SummaryViewModel()
     @StateObject private var summaryStore = SummaryStore.shared
+    @State private var collapsedSections: Set<String> = []
 
     var body: some View {
         NavigationStack {
@@ -17,54 +18,62 @@ struct SummaryScreen: View {
                     }
                     .frame(maxWidth: .infinity, minHeight: 260)
                 } else {
-                    LazyVStack(alignment: .leading, spacing: 20) {
+                    LazyVStack(alignment: .leading, spacing: 20, pinnedViews: [.sectionHeaders]) {
                         ForEach(viewModel.sections) { sectionData in
-                            VStack(alignment: .leading, spacing: 16) {
-                                HStack {
-                                    Text(viewModel.displayDate(sectionData.date))
-                                        .font(.headline)
-                                    Spacer()
-                                    Button(sectionData.summary == nil ? "生成总结" : "重新生成") {
-                                        Task { await viewModel.generateSummary(for: sectionData.id) }
+                            Section {
+                                VStack(alignment: .leading, spacing: 16) {
+                                    if !collapsedSections.contains(sectionData.id) {
+                                        HStack {
+                                            Button(sectionData.summary == nil ? "生成总结" : "重新生成") {
+                                                Task { await viewModel.generateSummary(for: sectionData.id) }
+                                            }
+                                            .buttonStyle(.bordered)
+                                            .disabled(sectionData.isLoading || sectionData.entries.isEmpty)
+                                            Spacer()
+                                        }
                                     }
-                                    .buttonStyle(.bordered)
-                                    .disabled(sectionData.isLoading || sectionData.entries.isEmpty)
+
+                                    if collapsedSections.contains(sectionData.id) {
+                                        EmptyView()
+                                    } else if sectionData.isLoading {
+                                        ProgressView("正在生成总结…")
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    } else if let error = sectionData.errorMessage {
+                                        Text("生成失败：\(error)")
+                                            .font(.footnote)
+                                            .foregroundStyle(.secondary)
+                                    } else if let summary = sectionData.summary {
+                                        headerCard(summary: summary)
+
+                                        section(title: "重点词汇") {
+                                            ForEach(Array(summary.vocab.prefix(10))) { item in
+                                                vocabCard(word: item.word, meaning: item.meaning, example: item.example)
+                                            }
+                                        }
+
+                                        section(title: "语法点") {
+                                            ForEach(Array(summary.grammar.prefix(10))) { item in
+                                                grammarCard(title: item.title, desc: item.explanation, example: item.example)
+                                            }
+                                        }
+
+                                        section(title: "小测验") {
+                                            let score = quizScore(summary: summary, dayKey: sectionData.id)
+                                            if let score {
+                                                Text("得分：\(score.correct)/\(score.total)")
+                                                    .font(.caption)
+                                                    .foregroundStyle(.secondary)
+                                            }
+                                            ForEach(Array(summary.quiz.prefix(10))) { item in
+                                                quizCard(item: item, dayKey: sectionData.id)
+                                            }
+                                        }
+                                    }
                                 }
-
-                                if sectionData.isLoading {
-                                    ProgressView("正在生成总结…")
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                } else if let error = sectionData.errorMessage {
-                                    Text("生成失败：\(error)")
-                                        .font(.footnote)
-                                        .foregroundStyle(.secondary)
-                                } else if let summary = sectionData.summary {
-                                    headerCard(summary: summary)
-
-                                    section(title: "重点词汇") {
-                                        ForEach(Array(summary.vocab.prefix(10))) { item in
-                                            vocabCard(word: item.word, meaning: item.meaning, example: item.example)
-                                        }
-                                    }
-
-                                    section(title: "语法点") {
-                                        ForEach(Array(summary.grammar.prefix(10))) { item in
-                                            grammarCard(title: item.title, desc: item.explanation, example: item.example)
-                                        }
-                                    }
-
-                                    section(title: "小测验") {
-                                        let score = quizScore(summary: summary, dayKey: sectionData.id)
-                                        if let score {
-                                            Text("得分：\(score.correct)/\(score.total)")
-                                                .font(.caption)
-                                                .foregroundStyle(.secondary)
-                                        }
-                                        ForEach(Array(summary.quiz.prefix(10))) { item in
-                                            quizCard(item: item, dayKey: sectionData.id)
-                                        }
-                                    }
-                                }
+                                .padding(.bottom, 8)
+                            } header: {
+                                summaryHeader(for: sectionData)
+                                    .background(.thinMaterial)
                             }
                         }
                     }
@@ -76,6 +85,36 @@ struct SummaryScreen: View {
                 viewModel.load()
             }
         }
+    }
+
+    private func summaryHeader(for sectionData: SummarySection) -> some View {
+        let canCollapse = sectionData.summary != nil
+        let isCollapsed = collapsedSections.contains(sectionData.id)
+        return Button(action: {
+            guard canCollapse else { return }
+            if isCollapsed {
+                collapsedSections.remove(sectionData.id)
+            } else {
+                collapsedSections.insert(sectionData.id)
+            }
+        }) {
+            VStack(alignment: .leading, spacing: 6) {
+                HStack {
+                    Text(viewModel.displayDate(sectionData.date))
+                        .font(.headline)
+                    Spacer()
+                    if canCollapse {
+                        Image(systemName: isCollapsed ? "chevron.down" : "chevron.up")
+                            .foregroundStyle(.secondary)
+                    }
+                }
+                Text("\(sectionData.entries.count)次对话")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            .padding(.vertical, 6)
+        }
+        .buttonStyle(.plain)
     }
 
     private func headerCard(summary: SummaryResult) -> some View {
