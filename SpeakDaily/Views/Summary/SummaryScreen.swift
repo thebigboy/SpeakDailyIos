@@ -70,14 +70,15 @@ struct SummaryScreen: View {
                                         }
                                     }
                                 }
+                                .padding(.horizontal)
                                 .padding(.bottom, 8)
                             } header: {
                                 summaryHeader(for: sectionData)
-                                    .background(.thinMaterial)
+                                    .background(Color(.systemBackground).opacity(0.96))
+                                    .shadow(color: .black.opacity(0.08), radius: 6, x: 0, y: 2)
                             }
                         }
                     }
-                    .padding()
                 }
             }
             .navigationTitle("学习总结")
@@ -112,9 +113,12 @@ struct SummaryScreen: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-            .padding(.vertical, 6)
+            .padding(.horizontal)
+            .padding(.vertical, 8)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         .buttonStyle(.plain)
+        .contentShape(Rectangle())
     }
 
     private func headerCard(summary: SummaryResult) -> some View {
